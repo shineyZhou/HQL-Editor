@@ -1,0 +1,178 @@
+
+   .textarea{
+                position:relative;
+                width:80%;
+                border:#999 1px solid;
+                /**padding:10px;*/
+               height:98px;
+               overflow: hidden;
+              font:12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+}
+.ace_cursor-layer {
+    z-index: 4;
+}
+.ace_layer {
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    word-wrap: normal;
+    white-space: pre;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+div {
+    display: block;
+}
+
+.ace_scroller {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: text;
+}
+
+.ace_editor {
+    position: relative;
+    overflow: hidden;
+    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro',
+            }
+            .strFiledColor{
+                color:#2196F3;
+            }
+            .numFiledColor{
+                color:#673AB7;
+            }
+            .condOprColor{
+                color:#795548;
+            }
+            .keyColor{
+                color:#ff8500;
+            }
+            .valueColor{
+                color:#6bb359;
+            }
+            .bracketColor{
+                color:#000;
+            }
+            .otherFieldColor{
+                color:#D50000;
+            }
+
+.ace_text-input{
+    position:absolute;
+    z-index:0;
+    resize:none;
+    padding:0px;
+    user-select:none;
+    outline: none;
+    contain: strict;
+    -ms-user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    white-space: pre!important;
+    opacity:0;    
+    font-size: 1px;
+    height:1px;
+    width: 1px;
+
+}
+.ace_layer {
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    word-wrap: normal;
+    white-space: pre;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+.ace_text-layer {
+    font: inherit !important;
+    position: absolute;
+   
+    contain: style size layout;
+    left:0;
+    top:0;
+}
+.ace_text-layer > .ace_line {
+    contain: style size layout;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height:14px;
+}
+.ace_cursor-layer {
+    z-index: 4;
+}
+.ace_cursor {
+    z-index: 4;
+    position: absolute;
+    left:0px;
+    top:0px;
+    box-sizing: border-box;
+    border-left: 2px solid;
+    transform: translatez(0);
+    width: 6px;
+    height: 14px;
+    color: #666;
+    animation-duration: 1000ms;
+}
+.ace_hidden-cursors .ace_cursor {
+    opacity: 0.2;
+}
+.ace_smooth-blinking .ace_cursor {
+    transition:opacity 0.18s;
+}
+.ace_animate-blinking .ace_cursor {
+    animation-duration:1000ms;
+    animation-timing-function:step-end;
+    animation-name:blink-ace-animate;
+    animation-iteration-count:infinite;
+}
+.ace_animate-blinking.ace_smooth-blinking .ace_cursor {
+    animation-duration:1000ms;
+    animation-timing-function:ease-in-out;
+    animation-name:blink-ace-animate-smooth;
+}
+@keyframes blink-ace-animate {
+    from,to {
+    opacity:1;
+}
+60% {
+    opacity:0;
+}
+}@keyframes blink-ace-animate-smooth {
+    from,to {
+    opacity:1;
+}
+45% {
+    opacity:1;
+}
+60% {
+    opacity:0;
+}
+85% {
+    opacity:0;
+}
+}
+.des{
+  
+    font-size:16px;
+    line-height:30px;
+    font-family:"Microsoft YaHei";
+}
+.des p{
+    text-indent:2em;
+}

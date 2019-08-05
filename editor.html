@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <style type="text/css" media="screen">
+    body {
+        overflow:hidden;
+    }
+
+    #editor {
+        margin: 0;
+        position: absolute;
+        top: 0;
+        bottom:20px;
+        left: 0;
+        right: 0;
+    }
+   .xq-here{
+      position: absolute;
+        bottom:10px;
+        left: 0;    
+        font-family: "Microsoft YaHei";
+        color:#2196F3; 
+   }
+  </style>
+</head>
+<body>
+
+<pre id="editor" style="height:90%">(src_ip="172.16.150.23") and (src_port=80 or ((not dst_port=8080)))</pre>
+<a href="des.html"  class="xq-here">这里可以看详情</a>
+
+<script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="src-noconflict/ext-language_tools.js"></script>
+<script>
+    var langTools=ace.require("ace/ext/language_tools");
+    var editor = ace.edit("editor");
+     editor.setTheme("ace/theme/sqlserver");
+    editor.session.setMode("ace/mode/sql");
+     // enable autocompletion and snippets
+    editor.setOptions({
+        enableBasicAutocompletion: false,
+        enableSnippets: false,
+        enableLiveAutocompletion: true
+    });
+    /**模拟数据*/
+    var dataJson={
+     fields: [{
+      name:'src_ip',
+      type:'172.16.150.23',
+      description:"源地址，更多描述..."
+      }, 
+      {
+        name:'src_port',
+        type:80,
+        description:'源端口,yeah...'
+      },
+      {
+        name:'dst_ip',
+        type:'172.16.150.23',
+        description:'目标地址，更多描述...'
+    },
+    {
+      name:'dst_port',
+      type:81,
+      description:'目标端口,yeah...'
+    }
+    ]
+    };   
+    function isInArray(arr,val){
+    //值是否在数组中
+    var isExist=false;
+    arr.forEach(function(elem,ind){
+      if(elem==val){
+        isExist=true;
+      }
+    });
+    return isExist;
+    
+  }
+
+  //设置自动提示代码
+var setCompleteData = function(data) {  
+    langTools.addCompleter({
+        getCompletions: function(editor, session, pos, prefix, callback) {
+         
+            if (prefix.length === 0) {
+                return callback(null, []);
+            } else {
+                return callback(null, data);
+            }
+        }
+    });
+}
+    var dataFields=[];
+    var completeData=[];
+function initTextarea(){     
+              
+    var dataArr=dataJson.fields;
+    var len=dataArr.length;
+    var zStr="";
+    for(var i=0; i<len; i++){      
+      var data=dataArr[i];
+      var str='(';
+      var name=data.name;
+      var val=data.type;
+      var description=data.description;
+      var isValStr=(typeof val).toLocaleLowerCase();   
+         if(!isInArray(dataFields,name)){
+          //如果不存在字段数组中则push
+          dataFields.push(name);
+
+         var cData={         
+          value : name,
+          caption: name,
+          meta: description,         
+          score : 1000 // 让test排在最上面
+          };
+          completeData.push(cData);
+        }
+        if(isValStr=="string"){
+          val='"'+val+'"';
+        }                        
+        str+=name+'='+val+')';       
+      if(i!=len-1){
+        str=str+'and';
+      }
+      zStr+=str;  
+    }
+    editor.setValue(zStr);
+    
+    
+  }
+  initTextarea();/**初始化赋值editor*/  
+setCompleteData(completeData);
+</script>
+
+</body>
+</html>
